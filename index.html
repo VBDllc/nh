@@ -359,23 +359,168 @@
         }
 
         /* RESPONSIVE */
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .hero-stats { gap: 36px; }
+            .hero-stats .stat-num { font-size: 36px; }
+            .about { gap: 48px; }
+            .contact-grid { gap: 48px; }
+        }
+
+        /* Mobile landscape / small tablet */
         @media (max-width: 900px) {
-            nav { padding: 0 24px; }
+            nav { padding: 0 20px; height: 64px; }
+            .logo { font-size: 19px; }
             .nav-links { display: none; }
-            section { padding: 64px 24px; }
-            .hero { padding: 100px 24px 64px; }
-            .hero-stats { position: static; margin-top: 48px; }
-            .about { grid-template-columns: 1fr; gap: 40px; }
-            .contact-grid { grid-template-columns: 1fr; }
+
+            section { padding: 64px 20px; }
+
+            .hero {
+                padding: 96px 20px 56px;
+                min-height: auto;
+            }
+            .hero h1 { font-size: clamp(32px, 8vw, 48px); margin-bottom: 20px; }
+            .hero p { font-size: 16px; margin-bottom: 32px; }
+            .hero-badge { font-size: 11px; margin-bottom: 24px; padding: 6px 16px; }
+
+            .hero-stats {
+                position: static; margin-top: 48px;
+                gap: 32px; justify-content: flex-start;
+            }
+            .hero-stats .stat-num { font-size: 32px; }
+            .hero-stats .stat-label { font-size: 10px; letter-spacing: 1px; }
+
+            .hero-actions { flex-direction: column; }
+            .btn-primary, .btn-secondary {
+                padding: 14px 28px; font-size: 14px;
+                justify-content: center; text-align: center;
+            }
+
+            .services-header { margin-bottom: 40px; }
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .service-card { padding: 32px 24px; }
+            .service-icon { width: 48px; height: 48px; margin-bottom: 18px; font-size: 20px; }
+            .service-card h3 { font-size: 20px; }
+
+            .about {
+                grid-template-columns: 1fr; gap: 36px;
+                padding: 64px 20px;
+            }
+            .about-features { margin-top: 28px; gap: 20px; }
+            .about-visual { padding: 32px 24px; gap: 20px; }
+            .about-stat-row { padding-bottom: 20px; }
+            .about-stat-value { font-size: 18px; }
+
+            .testimonials-header { margin-bottom: 36px; }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .testimonial-card { padding: 28px 24px; }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            footer { padding: 36px 20px; }
+        }
+
+        /* Mobile portrait */
+        @media (max-width: 600px) {
+            nav { padding: 0 16px; height: 60px; }
+            .logo { font-size: 17px; }
+
+            section { padding: 48px 16px; }
+
+            .hero {
+                padding: 80px 16px 44px;
+            }
+            .hero h1 { font-size: clamp(28px, 7.5vw, 38px); line-height: 1.15; }
+            .hero p { font-size: 15px; line-height: 1.65; }
+
+            .hero-stats { flex-wrap: wrap; gap: 24px; }
+            .stat { min-width: 80px; }
+            .hero-stats .stat-num { font-size: 28px; }
+
+            .section-title { font-size: clamp(24px, 6vw, 32px); }
+            .section-subtitle { font-size: 15px; }
+            .section-label { font-size: 10px; letter-spacing: 2px; }
+
+            .about-feature-icon { width: 36px; height: 36px; font-size: 15px; }
+            .about-feature h4 { font-size: 14px; }
+            .about-feature p { font-size: 13px; }
+
+            .about-stat-row { flex-direction: column; gap: 16px; }
+            .about-stat-row:not(:last-child) { padding-bottom: 16px; }
+
+            .testimonial-text { font-size: 14px; }
+
+            .contact-item-icon { width: 42px; height: 42px; font-size: 18px; }
+            .contact-info { gap: 24px; }
+            .contact-form input,
+            .contact-form textarea {
+                padding: 14px 16px; font-size: 14px;
+            }
+            .contact-form button { width: 100%; justify-content: center; }
+
+            footer { padding: 32px 16px; }
+            .footer-logo { font-size: 18px; }
+        }
+
+        /* Very small screens */
+        @media (max-width: 380px) {
+            .hero { padding: 76px 14px 40px; }
+            .hero h1 { font-size: 26px; }
+            .hero p { font-size: 14px; }
+            .hero-stats .stat-num { font-size: 24px; }
+            .btn-primary, .btn-secondary { padding: 12px 20px; font-size: 13px; }
+            .service-card { padding: 24px 18px; }
+            .about-visual { padding: 24px 18px; }
+            .testimonial-card { padding: 24px 18px; }
         }
 
         /* Mobile hamburger */
         .mobile-menu-btn {
             display: none; background: none; border: none;
             color: white; font-size: 24px; cursor: pointer;
+            padding: 8px; min-width: 44px; min-height: 44px;
         }
         @media (max-width: 900px) {
-            .mobile-menu-btn { display: block; }
+            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none; position: fixed; inset: 0;
+            background: rgba(11,29,51,0.98); backdrop-filter: blur(16px);
+            z-index: 200; flex-direction: column;
+            align-items: center; justify-content: center; gap: 8px;
+        }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a {
+            color: var(--white); text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px; font-weight: 500;
+            padding: 16px 32px; border-radius: 8px;
+            transition: all 0.3s; width: 80%; text-align: center;
+        }
+        .mobile-menu a:hover { color: var(--gold); }
+        .mobile-menu .nav-contact {
+            margin-top: 16px; background: var(--gold);
+            color: var(--navy) !important; font-size: 16px;
+            font-family: 'DM Sans', sans-serif; font-weight: 600;
+        }
+        .mobile-menu-close {
+            position: absolute; top: 18px; right: 20px;
+            background: none; border: none; color: var(--white);
+            font-size: 32px; cursor: pointer;
+            width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
         }
     </style>
 </head>
@@ -390,8 +535,18 @@
         <a href="#testimonials">Clients</a>
         <a href="#contact" class="nav-contact">Get in Touch</a>
     </div>
-    <button class="mobile-menu-btn">☰</button>
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.add('active'); document.body.style.overflow='hidden'">☰</button>
+</div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.remove('active'); document.body.style.overflow=''">✕</button>
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#testimonials" onclick="closeMobile()">Clients</a>
+    <a href="#contact" class="nav-contact" onclick="closeMobile()">Get in Touch</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -407,7 +562,7 @@
     </div>
     <div class="hero-stats">
         <div class="stat">
-            <div class="stat-num">5K+</div>
+            <div class="stat-num">1M+</div>
             <div class="stat-label">Tickets Sold</div>
         </div>
         <div class="stat">
@@ -415,7 +570,7 @@
             <div class="stat-label">Client Satisfaction</div>
         </div>
         <div class="stat">
-            <div class="stat-num">12+</div>
+            <div class="stat-num">15+</div>
             <div class="stat-label">Years Experience</div>
         </div>
     </div>
@@ -481,7 +636,7 @@
         <div class="about-stat-row">
             <div>
                 <div class="about-stat-label">Founded</div>
-                <div class="about-stat-value">2012</div>
+                <div class="about-stat-value">2010</div>
             </div>
             <div>
                 <div class="about-stat-label">Team Members</div>
@@ -567,21 +722,21 @@
                     <div class="contact-item-icon">📧</div>
                     <div>
                         <h4>Email</h4>
-                        <p>info@netanelhospitality.com</p>
+                        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a5cccbc3cae5cbc0d1c4cbc0c9cdcad6d5ccd1c4c9ccd1dc8bc6cac8">[email&#160;protected]</a></p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-item-icon">📞</div>
                     <div>
                         <h4>Phone</h4>
-                        <p>+1 (555) 123-4567</p>
+                        <p>516.808.9070</p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-item-icon">📍</div>
                     <div>
                         <h4>Office</h4>
-                        <p>New York, NY<br>United States</p>
+                        <p>11 Grace Avenue, Suite 411<br>Great Neck, NY 11021</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -609,13 +764,19 @@
     <div class="footer-logo">Netanel <span>Hospitality</span></div>
     <div class="footer-text">
         Premium Tickets for Sports, Concerts & Theater<br>
-        <a href="mailto:info@netanelhospitality.com">info@netanelhospitality.com</a>
+        <a href="/cdn-cgi/l/email-protection#30595e565f705e5544515e555c585f43405944515c5944491e535f5d"><span class="__cf_email__" data-cfemail="9ff6f1f9f0dff1faebfef1faf3f7f0eceff6ebfef3f6ebe6b1fcf0f2">[email&#160;protected]</span></a>
     </div>
     <div class="footer-divider"></div>
     <div class="footer-bottom">© 2025 Netanel Hospitality. All rights reserved.</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Mobile menu
+    function closeMobile() {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
@@ -629,18 +790,4 @@
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.service-card, .testimonial-card, .about-feature, .contact-item').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'all 0.6s ease';
-        observer.observe(el);
-    });
-</script>
-
-</body>
-</html>
+                entry.target.style.t

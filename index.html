@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netanel Hospitality | Premium Ticket Brokerage</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --navy: #0B1D33;
@@ -13,13 +13,13 @@
             --gold: #C9A96E;
             --gold-light: #DBBF8C;
             --cream: #FAF7F2;
-            --cream-dark: #EDE8DF;
             --text: #2C2C2C;
             --text-light: #6B6B6B;
             --white: #FFFFFF;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'DM Sans', sans-serif;
@@ -31,288 +31,330 @@
         /* NAV */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(11, 29, 51, 0.97);
-            backdrop-filter: blur(12px);
+            background: rgba(11, 29, 51, 0.95);
+            backdrop-filter: blur(16px);
             padding: 0 48px;
-            height: 72px;
+            height: 68px;
             display: flex; align-items: center; justify-content: space-between;
         }
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 22px; font-weight: 600;
-            color: var(--white);
-            letter-spacing: 0.5px;
+            font-size: 21px; font-weight: 600;
+            color: var(--white); letter-spacing: 0.5px;
         }
         .logo span { color: var(--gold); }
-        .nav-links { display: flex; gap: 36px; align-items: center; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
         .nav-links a {
-            color: rgba(255,255,255,0.75); text-decoration: none;
-            font-size: 14px; font-weight: 500; letter-spacing: 0.3px;
+            color: rgba(255,255,255,0.7); text-decoration: none;
+            font-size: 14px; font-weight: 500;
             transition: color 0.3s;
         }
         .nav-links a:hover { color: var(--gold); }
-        .nav-contact {
+        .nav-cta {
             background: var(--gold); color: var(--navy) !important;
             padding: 10px 24px; border-radius: 6px;
             font-weight: 600 !important;
+            transition: background 0.3s;
         }
-        .nav-contact:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+        .nav-cta:hover { background: var(--gold-light) !important; }
 
         /* HERO */
         .hero {
-            min-height: 100vh; display: flex; align-items: center;
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
             background: var(--navy);
             position: relative; overflow: hidden;
-            padding: 120px 48px 80px;
+            padding: 120px 24px 80px;
         }
         .hero::before {
             content: ''; position: absolute; inset: 0;
             background:
-                radial-gradient(ellipse 60% 50% at 80% 40%, rgba(201,169,110,0.08) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 60% at 20% 70%, rgba(201,169,110,0.05) 0%, transparent 60%);
+                radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,169,110,0.06) 0%, transparent 70%);
         }
-        .hero-grid {
-            content: ''; position: absolute; inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
+        .hero-content {
+            position: relative; max-width: 720px;
         }
-        .hero-content { position: relative; max-width: 720px; }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(201,169,110,0.12); border: 1px solid rgba(201,169,110,0.25);
+            background: rgba(201,169,110,0.1); border: 1px solid rgba(201,169,110,0.2);
             border-radius: 100px; padding: 8px 20px;
-            font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+            font-size: 11px; font-weight: 600; letter-spacing: 1.8px;
             color: var(--gold); text-transform: uppercase;
-            margin-bottom: 32px;
-            animation: fadeUp 0.8s ease both;
+            margin-bottom: 28px;
+            animation: fadeUp 0.7s ease both;
         }
         .hero-badge::before {
             content: ''; width: 6px; height: 6px;
             background: var(--gold); border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(42px, 5.5vw, 72px);
+            font-size: clamp(36px, 5.5vw, 68px);
             font-weight: 600; color: var(--white);
-            line-height: 1.1; margin-bottom: 28px;
-            animation: fadeUp 0.8s ease 0.15s both;
+            line-height: 1.1; margin-bottom: 24px;
+            animation: fadeUp 0.7s ease 0.1s both;
         }
         .hero h1 em {
             font-style: italic; color: var(--gold);
         }
         .hero p {
-            font-size: 18px; line-height: 1.7;
-            color: rgba(255,255,255,0.6);
-            max-width: 540px; margin-bottom: 44px;
-            animation: fadeUp 0.8s ease 0.3s both;
+            font-size: 17px; line-height: 1.75;
+            color: rgba(255,255,255,0.5);
+            max-width: 520px; margin: 0 auto 40px;
+            animation: fadeUp 0.7s ease 0.2s both;
         }
         .hero-actions {
-            display: flex; gap: 16px; flex-wrap: wrap;
-            animation: fadeUp 0.8s ease 0.45s both;
+            display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+            animation: fadeUp 0.7s ease 0.3s both;
         }
         .btn-primary {
             background: var(--gold); color: var(--navy);
-            padding: 16px 36px; border-radius: 8px;
-            font-size: 15px; font-weight: 600;
-            text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 32px; border-radius: 8px;
+            font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
             transition: all 0.3s; border: none; cursor: pointer;
         }
         .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
         .btn-secondary {
-            background: transparent; color: var(--white);
-            padding: 16px 36px; border-radius: 8px;
+            background: transparent; color: rgba(255,255,255,0.8);
+            padding: 15px 32px; border-radius: 8px;
             font-size: 15px; font-weight: 500;
-            text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
-            border: 1px solid rgba(255,255,255,0.2);
+            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+            border: 1px solid rgba(255,255,255,0.15);
             transition: all 0.3s;
         }
         .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
-        .hero-stats {
-            position: absolute; right: 48px; bottom: 80px;
-            display: flex; gap: 48px;
-            animation: fadeUp 0.8s ease 0.6s both;
+        /* STATS BAR */
+        .stats-bar {
+            background: var(--navy-light);
+            border-top: 1px solid rgba(201,169,110,0.1);
+            border-bottom: 1px solid rgba(201,169,110,0.1);
+            display: flex; justify-content: center; gap: 64px;
+            padding: 40px 24px;
         }
         .stat { text-align: center; }
         .stat-num {
             font-family: 'Playfair Display', serif;
-            font-size: 44px; font-weight: 600; color: var(--gold);
+            font-size: 40px; font-weight: 600; color: var(--gold);
         }
         .stat-label {
-            font-size: 12px; color: rgba(255,255,255,0.45);
+            font-size: 11px; color: rgba(255,255,255,0.4);
             text-transform: uppercase; letter-spacing: 1.5px;
             margin-top: 4px;
         }
 
-        /* SECTIONS */
-        section { padding: 100px 48px; }
-        .section-label {
-            font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
-            text-transform: uppercase; color: var(--gold);
-            margin-bottom: 16px;
+        /* SCROLL ANIMATIONS */
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(32px, 3.5vw, 48px);
-            font-weight: 600; color: var(--navy);
-            line-height: 1.15; margin-bottom: 20px;
-        }
-        .section-subtitle {
-            font-size: 17px; line-height: 1.7;
-            color: var(--text-light); max-width: 560px;
+        .reveal.visible {
+            opacity: 1; transform: translateY(0);
         }
 
         /* SERVICES */
+        section { padding: 96px 24px; }
+        .section-label {
+            font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 600; color: var(--navy);
+            line-height: 1.15; margin-bottom: 16px;
+        }
+        .section-subtitle {
+            font-size: 16px; line-height: 1.7;
+            color: var(--text-light); max-width: 500px;
+        }
+
         .services { background: var(--white); }
-        .services-header { text-align: center; margin-bottom: 64px; }
+        .services-header { text-align: center; margin-bottom: 56px; }
         .services-header .section-subtitle { margin: 0 auto; }
         .services-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px; max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 24px; max-width: 960px; margin: 0 auto;
         }
         .service-card {
             background: var(--cream);
-            border-radius: 16px; padding: 40px 36px;
-            border: 1px solid rgba(0,0,0,0.04);
-            transition: all 0.4s;
+            border-radius: 16px; padding: 40px 28px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: all 0.4s ease;
+            position: relative; overflow: hidden;
         }
+        .service-card::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 0; height: 2px; background: var(--gold);
+            transition: width 0.4s ease;
+        }
+        .service-card:hover::after { width: 60%; }
         .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.06);
+            border-color: rgba(201,169,110,0.15);
         }
         .service-icon {
-            width: 56px; height: 56px;
-            background: var(--navy); border-radius: 14px;
+            width: 64px; height: 64px;
+            margin: 0 auto 20px;
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 24px; font-size: 24px;
+        }
+        .service-icon svg {
+            width: 48px; height: 48px;
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover .service-icon svg {
+            transform: scale(1.1);
         }
         .service-card h3 {
             font-family: 'Playfair Display', serif;
             font-size: 22px; font-weight: 600;
-            color: var(--navy); margin-bottom: 12px;
+            color: var(--navy); margin-bottom: 10px;
         }
         .service-card p {
-            font-size: 15px; line-height: 1.7;
+            font-size: 14px; line-height: 1.7;
             color: var(--text-light);
         }
 
         /* ABOUT */
         .about {
             background: var(--navy);
+            padding: 96px 24px;
+        }
+        .about-inner {
+            max-width: 960px; margin: 0 auto;
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 80px; align-items: center;
+            gap: 64px; align-items: center;
         }
         .about .section-title { color: var(--white); }
-        .about .section-subtitle { color: rgba(255,255,255,0.55); max-width: 100%; }
-        .about-features { margin-top: 40px; display: flex; flex-direction: column; gap: 24px; }
+        .about .section-subtitle { color: rgba(255,255,255,0.5); max-width: 100%; }
+        .about-features { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
         .about-feature {
-            display: flex; gap: 16px; align-items: flex-start;
+            display: flex; gap: 14px; align-items: flex-start;
         }
         .about-feature-icon {
-            width: 40px; height: 40px; flex-shrink: 0;
-            background: rgba(201,169,110,0.12);
-            border-radius: 10px;
+            width: 36px; height: 36px; flex-shrink: 0;
+            background: rgba(201,169,110,0.1);
+            border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
-            color: var(--gold); font-size: 18px;
+        }
+        .about-feature-icon svg {
+            width: 16px; height: 16px; stroke: var(--gold); fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
         }
         .about-feature h4 {
-            font-size: 15px; font-weight: 600;
-            color: var(--white); margin-bottom: 4px;
+            font-size: 14px; font-weight: 600;
+            color: var(--white); margin-bottom: 2px;
         }
         .about-feature p {
-            font-size: 14px; line-height: 1.6;
-            color: rgba(255,255,255,0.45);
+            font-size: 13px; line-height: 1.6;
+            color: rgba(255,255,255,0.4);
         }
-        .about-visual {
-            background: var(--navy-light);
-            border-radius: 20px; padding: 48px;
+        .about-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        }
+        .about-stat-card {
+            background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.06);
-            display: flex; flex-direction: column; gap: 28px;
+            border-radius: 14px; padding: 28px 24px;
+            text-align: center;
+            transition: border-color 0.3s;
         }
-        .about-stat-row {
-            display: flex; justify-content: space-between;
-            padding-bottom: 28px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .about-stat-row:last-child { border: none; padding: 0; }
-        .about-stat-label {
-            font-size: 13px; color: rgba(255,255,255,0.4);
-            letter-spacing: 0.5px;
-        }
+        .about-stat-card:hover { border-color: rgba(201,169,110,0.2); }
         .about-stat-value {
             font-family: 'Playfair Display', serif;
-            font-size: 20px; font-weight: 600; color: var(--gold);
+            font-size: 28px; font-weight: 600; color: var(--gold);
+            margin-bottom: 4px;
+        }
+        .about-stat-label {
+            font-size: 11px; color: rgba(255,255,255,0.35);
+            text-transform: uppercase; letter-spacing: 1px;
         }
 
         /* TESTIMONIALS */
         .testimonials { background: var(--cream); }
-        .testimonials-header { text-align: center; margin-bottom: 56px; }
+        .testimonials-header { text-align: center; margin-bottom: 48px; }
         .testimonials-header .section-subtitle { margin: 0 auto; }
         .testimonials-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 28px; max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 24px; max-width: 960px; margin: 0 auto;
         }
         .testimonial-card {
             background: var(--white);
-            border-radius: 16px; padding: 36px;
+            border-radius: 14px; padding: 32px 28px;
             border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.05);
         }
         .testimonial-stars {
-            color: var(--gold); font-size: 16px;
-            margin-bottom: 20px; letter-spacing: 2px;
+            color: var(--gold); font-size: 14px;
+            margin-bottom: 16px; letter-spacing: 2px;
         }
         .testimonial-text {
-            font-size: 15px; line-height: 1.75;
-            color: var(--text); margin-bottom: 24px;
+            font-size: 14px; line-height: 1.75;
+            color: var(--text); margin-bottom: 20px;
             font-style: italic;
         }
         .testimonial-author {
-            display: flex; align-items: center; gap: 14px;
+            display: flex; align-items: center; gap: 12px;
         }
         .testimonial-avatar {
-            width: 44px; height: 44px; border-radius: 50%;
+            width: 40px; height: 40px; border-radius: 50%;
             background: var(--navy); display: flex;
             align-items: center; justify-content: center;
             color: var(--gold); font-family: 'Playfair Display', serif;
-            font-size: 16px; font-weight: 600;
+            font-size: 14px; font-weight: 600;
         }
         .testimonial-name {
-            font-size: 14px; font-weight: 600; color: var(--navy);
+            font-size: 13px; font-weight: 600; color: var(--navy);
         }
         .testimonial-role {
-            font-size: 12px; color: var(--text-light);
+            font-size: 11px; color: var(--text-light);
         }
 
         /* CONTACT */
         .contact { background: var(--white); }
-        .contact-grid {
+        .contact-inner {
+            max-width: 960px; margin: 0 auto;
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 64px; max-width: 1100px; margin: 0 auto;
+            gap: 56px;
         }
-        .contact-info { display: flex; flex-direction: column; gap: 36px; }
-        .contact-item { display: flex; gap: 16px; }
+        .contact-info { display: flex; flex-direction: column; gap: 28px; }
+        .contact-item { display: flex; gap: 14px; }
         .contact-item-icon {
-            width: 48px; height: 48px; flex-shrink: 0;
-            background: var(--cream); border-radius: 12px;
+            width: 44px; height: 44px; flex-shrink: 0;
+            background: var(--cream); border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 20px;
+        }
+        .contact-item-icon svg {
+            width: 18px; height: 18px; stroke: var(--gold); fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
         }
         .contact-item h4 {
-            font-size: 14px; font-weight: 600;
-            color: var(--navy); margin-bottom: 4px;
+            font-size: 13px; font-weight: 600;
+            color: var(--navy); margin-bottom: 2px;
         }
         .contact-item p {
-            font-size: 14px; color: var(--text-light);
-            line-height: 1.5;
+            font-size: 13px; color: var(--text-light); line-height: 1.5;
         }
         .contact-form {
-            display: flex; flex-direction: column; gap: 16px;
+            display: flex; flex-direction: column; gap: 14px;
         }
         .contact-form input,
         .contact-form textarea {
-            padding: 16px 20px; border-radius: 10px;
+            padding: 14px 18px; border-radius: 10px;
             border: 1px solid rgba(0,0,0,0.08);
             background: var(--cream); font-family: 'DM Sans', sans-serif;
             font-size: 14px; outline: none;
@@ -322,179 +364,59 @@
         .contact-form textarea:focus {
             border-color: var(--gold);
         }
-        .contact-form textarea { resize: vertical; min-height: 120px; }
-        .contact-form button {
-            align-self: flex-start;
-        }
+        .contact-form textarea { resize: vertical; min-height: 100px; }
+        .contact-form button { align-self: flex-start; }
 
         /* FOOTER */
         footer {
-            background: var(--navy); padding: 48px;
+            background: var(--navy); padding: 40px 24px;
             text-align: center;
         }
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 20px; font-weight: 600; color: var(--white);
-            margin-bottom: 16px;
+            font-size: 18px; font-weight: 600; color: var(--white);
+            margin-bottom: 12px;
         }
         .footer-logo span { color: var(--gold); }
         .footer-text {
-            font-size: 13px; color: rgba(255,255,255,0.35);
-            line-height: 1.7;
+            font-size: 13px; color: rgba(255,255,255,0.3);
+            line-height: 1.6; margin-bottom: 20px;
         }
         .footer-text a { color: var(--gold); text-decoration: none; }
-        .footer-divider {
-            width: 60px; height: 1px;
-            background: rgba(255,255,255,0.1);
-            margin: 24px auto;
-        }
         .footer-bottom {
-            font-size: 12px; color: rgba(255,255,255,0.25);
+            font-size: 11px; color: rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 20px;
         }
 
         /* ANIMATIONS */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Floating ticket animation in hero */
+        .floating-ticket {
+            animation: float 6s ease-in-out infinite;
+            position: absolute; opacity: 0.06; pointer-events: none;
+        }
+        .ft-1 { top: 15%; right: 8%; animation-delay: 0s; }
+        .ft-2 { bottom: 20%; left: 5%; animation-delay: -2s; transform: rotate(-12deg); }
+        .ft-3 { top: 30%; left: 12%; animation-delay: -4s; transform: rotate(8deg); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+            50% { transform: translateY(-20px) rotate(var(--r, 0deg)); }
+        }
+
+        /* Counter animation */
+        .count-up { display: inline-block; }
+
         /* RESPONSIVE */
-
-        /* Tablet */
-        @media (max-width: 1024px) {
-            .hero-stats { gap: 36px; }
-            .hero-stats .stat-num { font-size: 36px; }
-            .about { gap: 48px; }
-            .contact-grid { gap: 48px; }
-        }
-
-        /* Mobile landscape / small tablet */
-        @media (max-width: 900px) {
-            nav { padding: 0 20px; height: 64px; }
-            .logo { font-size: 19px; }
-            .nav-links { display: none; }
-
-            section { padding: 64px 20px; }
-
-            .hero {
-                padding: 96px 20px 56px;
-                min-height: auto;
-            }
-            .hero h1 { font-size: clamp(32px, 8vw, 48px); margin-bottom: 20px; }
-            .hero p { font-size: 16px; margin-bottom: 32px; }
-            .hero-badge { font-size: 11px; margin-bottom: 24px; padding: 6px 16px; }
-
-            .hero-stats {
-                position: static; margin-top: 48px;
-                gap: 32px; justify-content: flex-start;
-            }
-            .hero-stats .stat-num { font-size: 32px; }
-            .hero-stats .stat-label { font-size: 10px; letter-spacing: 1px; }
-
-            .hero-actions { flex-direction: column; }
-            .btn-primary, .btn-secondary {
-                padding: 14px 28px; font-size: 14px;
-                justify-content: center; text-align: center;
-            }
-
-            .services-header { margin-bottom: 40px; }
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .service-card { padding: 32px 24px; }
-            .service-icon { width: 48px; height: 48px; margin-bottom: 18px; font-size: 20px; }
-            .service-card h3 { font-size: 20px; }
-
-            .about {
-                grid-template-columns: 1fr; gap: 36px;
-                padding: 64px 20px;
-            }
-            .about-features { margin-top: 28px; gap: 20px; }
-            .about-visual { padding: 32px 24px; gap: 20px; }
-            .about-stat-row { padding-bottom: 20px; }
-            .about-stat-value { font-size: 18px; }
-
-            .testimonials-header { margin-bottom: 36px; }
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .testimonial-card { padding: 28px 24px; }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
-            }
-
-            footer { padding: 36px 20px; }
-        }
-
-        /* Mobile portrait */
-        @media (max-width: 600px) {
-            nav { padding: 0 16px; height: 60px; }
-            .logo { font-size: 17px; }
-
-            section { padding: 48px 16px; }
-
-            .hero {
-                padding: 80px 16px 44px;
-            }
-            .hero h1 { font-size: clamp(28px, 7.5vw, 38px); line-height: 1.15; }
-            .hero p { font-size: 15px; line-height: 1.65; }
-
-            .hero-stats { flex-wrap: wrap; gap: 24px; }
-            .stat { min-width: 80px; }
-            .hero-stats .stat-num { font-size: 28px; }
-
-            .section-title { font-size: clamp(24px, 6vw, 32px); }
-            .section-subtitle { font-size: 15px; }
-            .section-label { font-size: 10px; letter-spacing: 2px; }
-
-            .about-feature-icon { width: 36px; height: 36px; font-size: 15px; }
-            .about-feature h4 { font-size: 14px; }
-            .about-feature p { font-size: 13px; }
-
-            .about-stat-row { flex-direction: column; gap: 16px; }
-            .about-stat-row:not(:last-child) { padding-bottom: 16px; }
-
-            .testimonial-text { font-size: 14px; }
-
-            .contact-item-icon { width: 42px; height: 42px; font-size: 18px; }
-            .contact-info { gap: 24px; }
-            .contact-form input,
-            .contact-form textarea {
-                padding: 14px 16px; font-size: 14px;
-            }
-            .contact-form button { width: 100%; justify-content: center; }
-
-            footer { padding: 32px 16px; }
-            .footer-logo { font-size: 18px; }
-        }
-
-        /* Very small screens */
-        @media (max-width: 380px) {
-            .hero { padding: 76px 14px 40px; }
-            .hero h1 { font-size: 26px; }
-            .hero p { font-size: 14px; }
-            .hero-stats .stat-num { font-size: 24px; }
-            .btn-primary, .btn-secondary { padding: 12px 20px; font-size: 13px; }
-            .service-card { padding: 24px 18px; }
-            .about-visual { padding: 24px 18px; }
-            .testimonial-card { padding: 24px 18px; }
-        }
-
-        /* Mobile hamburger */
         .mobile-menu-btn {
             display: none; background: none; border: none;
             color: white; font-size: 24px; cursor: pointer;
             padding: 8px; min-width: 44px; min-height: 44px;
         }
-        @media (max-width: 900px) {
-            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
-        }
-
-        /* Mobile menu overlay */
         .mobile-menu {
             display: none; position: fixed; inset: 0;
             background: rgba(11,29,51,0.98); backdrop-filter: blur(16px);
@@ -505,22 +427,50 @@
         .mobile-menu a {
             color: var(--white); text-decoration: none;
             font-family: 'Playfair Display', serif;
-            font-size: 24px; font-weight: 500;
-            padding: 16px 32px; border-radius: 8px;
-            transition: all 0.3s; width: 80%; text-align: center;
+            font-size: 22px; font-weight: 500;
+            padding: 14px 32px; transition: color 0.3s;
         }
         .mobile-menu a:hover { color: var(--gold); }
-        .mobile-menu .nav-contact {
+        .mobile-menu .nav-cta {
             margin-top: 16px; background: var(--gold);
-            color: var(--navy) !important; font-size: 16px;
+            color: var(--navy) !important; font-size: 15px;
             font-family: 'DM Sans', sans-serif; font-weight: 600;
+            padding: 12px 28px; border-radius: 6px;
         }
         .mobile-menu-close {
-            position: absolute; top: 18px; right: 20px;
+            position: absolute; top: 16px; right: 20px;
             background: none; border: none; color: var(--white);
-            font-size: 32px; cursor: pointer;
-            width: 48px; height: 48px;
+            font-size: 28px; cursor: pointer;
+            width: 44px; height: 44px;
             display: flex; align-items: center; justify-content: center;
+        }
+
+        @media (max-width: 900px) {
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+            section { padding: 64px 20px; }
+            .hero { padding: 96px 20px 56px; min-height: auto; }
+            .hero h1 { font-size: clamp(30px, 8vw, 44px); }
+            .services-grid, .testimonials-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .about-inner { grid-template-columns: 1fr; gap: 40px; }
+            .contact-inner { grid-template-columns: 1fr; gap: 36px; }
+            .stats-bar { flex-wrap: wrap; gap: 32px; padding: 32px 20px; }
+            .stat-num { font-size: 32px; }
+        }
+        @media (max-width: 600px) {
+            nav { padding: 0 16px; height: 60px; }
+            .logo { font-size: 18px; }
+            section { padding: 48px 16px; }
+            .hero { padding: 80px 16px 44px; }
+            .hero h1 { font-size: clamp(26px, 7vw, 36px); }
+            .hero p { font-size: 15px; }
+            .about-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .about-stat-card { padding: 20px 16px; }
+            .about-stat-value { font-size: 22px; }
+            .stats-bar { gap: 24px; }
+            .stat-num { font-size: 28px; }
+            .contact-form button { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -533,134 +483,187 @@
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="#testimonials">Clients</a>
-        <a href="#contact" class="nav-contact">Get in Touch</a>
+        <a href="#contact" class="nav-cta">Get in Touch</a>
     </div>
-    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.add('active'); document.body.style.overflow='hidden'">☰</button>
-</div>
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.add('active'); document.body.style.overflow='hidden'">&#9776;</button>
 </nav>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.remove('active'); document.body.style.overflow=''">✕</button>
+    <button class="mobile-menu-close" onclick="closeMobile()">&#10005;</button>
     <a href="#services" onclick="closeMobile()">Services</a>
     <a href="#about" onclick="closeMobile()">About</a>
     <a href="#testimonials" onclick="closeMobile()">Clients</a>
-    <a href="#contact" class="nav-contact" onclick="closeMobile()">Get in Touch</a>
+    <a href="#contact" class="nav-cta" onclick="closeMobile()">Get in Touch</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-grid"></div>
+    <!-- Floating decorative tickets -->
+    <svg class="floating-ticket ft-1" width="120" height="70" viewBox="0 0 120 70" fill="none" style="--r:6deg">
+        <rect x="1" y="1" width="118" height="68" rx="8" stroke="rgba(201,169,110,1)" stroke-width="1"/>
+        <line x1="85" y1="8" x2="85" y2="62" stroke="rgba(201,169,110,0.5)" stroke-dasharray="3 4"/>
+    </svg>
+    <svg class="floating-ticket ft-2" width="100" height="60" viewBox="0 0 100 60" fill="none" style="--r:-12deg">
+        <rect x="1" y="1" width="98" height="58" rx="6" stroke="rgba(201,169,110,1)" stroke-width="1"/>
+        <line x1="72" y1="6" x2="72" y2="54" stroke="rgba(201,169,110,0.5)" stroke-dasharray="3 4"/>
+    </svg>
+    <svg class="floating-ticket ft-3" width="80" height="50" viewBox="0 0 80 50" fill="none" style="--r:8deg">
+        <rect x="1" y="1" width="78" height="48" rx="6" stroke="rgba(201,169,110,1)" stroke-width="1"/>
+        <line x1="58" y1="5" x2="58" y2="45" stroke="rgba(201,169,110,0.5)" stroke-dasharray="3 4"/>
+    </svg>
+
     <div class="hero-content">
         <div class="hero-badge">Trusted Ticket Broker</div>
         <h1>Premium Tickets for<br><em>Unforgettable Events</em></h1>
-        <p>Netanel Hospitality is a professional ticket brokerage specializing in premium seats for sports, concerts, and theater. We connect fans with the live experiences they love.</p>
+        <p>Netanel Hospitality connects fans with premium seats for sports, concerts, and theater — the live experiences that matter most.</p>
         <div class="hero-actions">
-            <a href="#contact" class="btn-primary">Request a Quote →</a>
+            <a href="#contact" class="btn-primary">Request a Quote &rarr;</a>
             <a href="#services" class="btn-secondary">Our Services</a>
-        </div>
-    </div>
-    <div class="hero-stats">
-        <div class="stat">
-            <div class="stat-num">1M+</div>
-            <div class="stat-label">Tickets Sold</div>
-        </div>
-        <div class="stat">
-            <div class="stat-num">98%</div>
-            <div class="stat-label">Client Satisfaction</div>
-        </div>
-        <div class="stat">
-            <div class="stat-num">15+</div>
-            <div class="stat-label">Years Experience</div>
         </div>
     </div>
 </section>
 
+<!-- STATS BAR -->
+<div class="stats-bar">
+    <div class="stat reveal">
+        <div class="stat-num"><span class="count-up" data-target="1000000" data-suffix="" data-format="abbr">0</span>+</div>
+        <div class="stat-label">Tickets Sold</div>
+    </div>
+    <div class="stat reveal">
+        <div class="stat-num"><span class="count-up" data-target="100000" data-format="abbr">0</span>+</div>
+        <div class="stat-label">Events Covered / Year</div>
+    </div>
+    <div class="stat reveal">
+        <div class="stat-num"><span class="count-up" data-target="98" data-suffix="%">0</span></div>
+        <div class="stat-label">Client Satisfaction</div>
+    </div>
+    <div class="stat reveal">
+        <div class="stat-num"><span class="count-up" data-target="15" data-suffix="+">0</span></div>
+        <div class="stat-label">Years Experience</div>
+    </div>
+</div>
+
 <!-- SERVICES -->
 <section class="services" id="services">
-    <div class="services-header">
+    <div class="services-header reveal">
         <div class="section-label">What We Do</div>
         <div class="section-title">Our Services</div>
-        <div class="section-subtitle">From courtside seats to front-row shows, we source premium tickets for the events that matter most to you.</div>
+        <div class="section-subtitle">From courtside seats to front-row shows, we source premium tickets for the events that matter most.</div>
     </div>
     <div class="services-grid">
-        <div class="service-card">
-            <div class="service-icon">🏟️</div>
+
+        <!-- SPORTS -->
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="18" stroke="#0B1D33" stroke-width="1.5" fill="none"/>
+                    <ellipse cx="24" cy="24" rx="18" ry="7" stroke="#C9A96E" stroke-width="1.2" fill="none"/>
+                    <ellipse cx="24" cy="24" rx="7" ry="18" stroke="#C9A96E" stroke-width="1.2" fill="none" transform="rotate(0 24 24)"/>
+                    <line x1="6" y1="24" x2="42" y2="24" stroke="#0B1D33" stroke-width="1" opacity="0.3"/>
+                    <line x1="24" y1="6" x2="24" y2="42" stroke="#0B1D33" stroke-width="1" opacity="0.3"/>
+                    <circle cx="24" cy="24" r="3" fill="#C9A96E" opacity="0.3"/>
+                </svg>
+            </div>
             <h3>Sports</h3>
             <p>Premium seats for NFL, NBA, MLB, NHL, soccer, boxing, and major sporting events. From regular season to championship finals.</p>
         </div>
-        <div class="service-card">
-            <div class="service-icon">🎵</div>
+
+        <!-- CONCERTS -->
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 38V14" stroke="#0B1D33" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M18 14L36 10V34" stroke="#0B1D33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <circle cx="13" cy="38" r="5" stroke="#C9A96E" stroke-width="1.2" fill="none"/>
+                    <circle cx="13" cy="38" r="2" fill="#C9A96E" opacity="0.3"/>
+                    <circle cx="31" cy="34" r="5" stroke="#C9A96E" stroke-width="1.2" fill="none"/>
+                    <circle cx="31" cy="34" r="2" fill="#C9A96E" opacity="0.3"/>
+                    <!-- Sound waves -->
+                    <path d="M39 18c2 1.5 2 5.5 0 7" stroke="#C9A96E" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <path d="M42 15.5c3 2.5 3 9 0 11.5" stroke="#C9A96E" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+                </svg>
+            </div>
             <h3>Concerts</h3>
-            <p>Front-row access to the biggest tours and festivals. Whether it's pop, rock, hip-hop, or country — we get you in the building.</p>
+            <p>Front-row access to the biggest tours and festivals. Pop, rock, hip-hop, country — we get you in the building.</p>
         </div>
-        <div class="service-card">
-            <div class="service-icon">🎭</div>
+
+        <!-- THEATER -->
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Happy mask -->
+                    <circle cx="18" cy="20" r="10" stroke="#0B1D33" stroke-width="1.5" fill="none"/>
+                    <circle cx="14.5" cy="17.5" r="1.2" fill="#0B1D33"/>
+                    <circle cx="21.5" cy="17.5" r="1.2" fill="#0B1D33"/>
+                    <path d="M13.5 22.5c1.2 2.5 5.8 2.5 7 0" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                    <!-- Sad mask -->
+                    <circle cx="30" cy="28" r="10" stroke="#C9A96E" stroke-width="1.2" fill="none"/>
+                    <circle cx="26.5" cy="25.5" r="1.2" fill="#C9A96E" opacity="0.6"/>
+                    <circle cx="33.5" cy="25.5" r="1.2" fill="#C9A96E" opacity="0.6"/>
+                    <path d="M26 33c1.2-2.2 5.8-2.2 7 0" stroke="#0B1D33" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.5"/>
+                </svg>
+            </div>
             <h3>Theater</h3>
             <p>Broadway, West End, and touring productions. Premium orchestra and mezzanine seats for the hottest shows in town.</p>
         </div>
+
     </div>
 </section>
 
 <!-- ABOUT -->
 <section class="about" id="about">
-    <div>
-        <div class="section-label">About Us</div>
-        <div class="section-title">A Trusted Name in<br>Ticket Brokerage</div>
-        <div class="section-subtitle">Founded with a passion for live events, Netanel Hospitality has grown into a trusted ticket brokerage connecting fans with premium seats for sports, concerts, and theater. Our team works directly with venues and partners to secure the best availability at competitive prices.</div>
-        <div class="about-features">
-            <div class="about-feature">
-                <div class="about-feature-icon">✓</div>
-                <div>
-                    <h4>Verified & Guaranteed Tickets</h4>
-                    <p>Every ticket we sell is 100% authentic and guaranteed for entry.</p>
+    <div class="about-inner">
+        <div class="reveal">
+            <div class="section-label">About Us</div>
+            <div class="section-title">A Trusted Name in<br>Ticket Brokerage</div>
+            <div class="section-subtitle">Founded with a passion for live events, Netanel Hospitality connects fans with premium seats for sports, concerts, and theater nationwide.</div>
+            <div class="about-features">
+                <div class="about-feature">
+                    <div class="about-feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                    </div>
+                    <div>
+                        <h4>Verified & Guaranteed</h4>
+                        <p>Every ticket is 100% authentic and guaranteed for entry.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="about-feature">
-                <div class="about-feature-icon">✓</div>
-                <div>
-                    <h4>Best Seat Selection</h4>
-                    <p>Access to premium inventory across thousands of venues nationwide.</p>
+                <div class="about-feature">
+                    <div class="about-feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                    </div>
+                    <div>
+                        <h4>Best Seat Selection</h4>
+                        <p>Premium inventory across thousands of venues nationwide.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="about-feature">
-                <div class="about-feature-icon">✓</div>
-                <div>
-                    <h4>Personal Service</h4>
-                    <p>A real person handles your order — no bots, no runarounds.</p>
+                <div class="about-feature">
+                    <div class="about-feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                    </div>
+                    <div>
+                        <h4>Personal Service</h4>
+                        <p>A real person handles your order — no bots, no runarounds.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="about-visual">
-        <div class="about-stat-row">
-            <div>
-                <div class="about-stat-label">Founded</div>
+        <div class="about-stats reveal">
+            <div class="about-stat-card">
                 <div class="about-stat-value">2010</div>
+                <div class="about-stat-label">Founded</div>
             </div>
-            <div>
-                <div class="about-stat-label">Team Members</div>
+            <div class="about-stat-card">
                 <div class="about-stat-value">25+</div>
+                <div class="about-stat-label">Team Members</div>
             </div>
-        </div>
-        <div class="about-stat-row">
-            <div>
-                <div class="about-stat-label">Events Covered</div>
-                <div class="about-stat-value">1,000+ / Year</div>
+            <div class="about-stat-card">
+                <div class="about-stat-value">100K+</div>
+                <div class="about-stat-label">Events / Year</div>
             </div>
-            <div>
-                <div class="about-stat-label">Venues</div>
+            <div class="about-stat-card">
                 <div class="about-stat-value">500+</div>
-            </div>
-        </div>
-        <div class="about-stat-row">
-            <div>
-                <div class="about-stat-label">Happy Customers</div>
-                <div class="about-stat-value">10,000+</div>
-            </div>
-            <div>
-                <div class="about-stat-label">Satisfaction Rate</div>
-                <div class="about-stat-value">98%</div>
+                <div class="about-stat-label">Venues</div>
             </div>
         </div>
     </div>
@@ -668,15 +671,15 @@
 
 <!-- TESTIMONIALS -->
 <section class="testimonials" id="testimonials">
-    <div class="testimonials-header">
+    <div class="testimonials-header reveal">
         <div class="section-label">Client Testimonials</div>
         <div class="section-title">What Our Clients Say</div>
-        <div class="section-subtitle">We're proud to have built lasting relationships with clients who trust us for their ticketing and hospitality needs.</div>
+        <div class="section-subtitle">We're proud to have built lasting relationships with clients who trust us for their ticketing needs.</div>
     </div>
     <div class="testimonials-grid">
-        <div class="testimonial-card">
-            <div class="testimonial-stars">★★★★★</div>
-            <div class="testimonial-text">"Got us incredible floor seats for a sold-out concert within hours. Netanel is our go-to for any event — they always come through."</div>
+        <div class="testimonial-card reveal">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="testimonial-text">"Got us incredible floor seats for a sold-out concert within hours. Netanel is our go-to — they always come through."</div>
             <div class="testimonial-author">
                 <div class="testimonial-avatar">DM</div>
                 <div>
@@ -685,8 +688,8 @@
                 </div>
             </div>
         </div>
-        <div class="testimonial-card">
-            <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-card reveal">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <div class="testimonial-text">"I've used Netanel for Broadway tickets multiple times. The seats are always better than expected, and the process couldn't be easier."</div>
             <div class="testimonial-author">
                 <div class="testimonial-avatar">SR</div>
@@ -696,9 +699,9 @@
                 </div>
             </div>
         </div>
-        <div class="testimonial-card">
-            <div class="testimonial-stars">★★★★★</div>
-            <div class="testimonial-text">"Needed playoff tickets last minute and Netanel made it happen. Great prices, legit tickets, smooth delivery. Can't ask for more."</div>
+        <div class="testimonial-card reveal">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="testimonial-text">"Needed playoff tickets last minute and Netanel made it happen. Great prices, legit tickets, smooth delivery."</div>
             <div class="testimonial-author">
                 <div class="testimonial-avatar">JK</div>
                 <div>
@@ -712,49 +715,56 @@
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-    <div class="contact-grid">
-        <div>
+    <div class="contact-inner">
+        <div class="reveal">
             <div class="section-label">Contact Us</div>
             <div class="section-title">Let's Work Together</div>
-            <div class="section-subtitle" style="margin-bottom: 40px;">Looking for tickets to an upcoming event? Reach out and our team will find the best seats for you.</div>
+            <div class="section-subtitle" style="margin-bottom: 32px;">Reach out and our team will find the best seats for you.</div>
             <div class="contact-info">
                 <div class="contact-item">
-                    <div class="contact-item-icon">📧</div>
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+                    </div>
                     <div>
                         <h4>Email</h4>
-                        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a5cccbc3cae5cbc0d1c4cbc0c9cdcad6d5ccd1c4c9ccd1dc8bc6cac8">[email&#160;protected]</a></p>
+                        <p>info@netanelhospitality.com</p>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-item-icon">📞</div>
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    </div>
                     <div>
                         <h4>Phone</h4>
                         <p>516.808.9070</p>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-item-icon">📍</div>
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
                     <div>
                         <h4>Office</h4>
                         <p>11 Grace Avenue, Suite 411<br>Great Neck, NY 11021</p>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-item-icon">🕐</div>
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
                     <div>
                         <h4>Business Hours</h4>
-                        <p>Mon – Fri: 9:00 AM – 6:00 PM EST<br>Sat: 10:00 AM – 2:00 PM EST</p>
+                        <p>Mon–Fri: 9AM–6PM EST<br>Sat: 10AM–2PM EST</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="contact-form">
+        <div class="contact-form reveal">
             <input type="text" placeholder="Full Name">
             <input type="email" placeholder="Email Address">
-            <input type="text" placeholder="Company (optional)">
             <input type="text" placeholder="Event You're Interested In">
             <textarea placeholder="Tell us about your needs..."></textarea>
-            <button class="btn-primary" onclick="alert('Thank you for your inquiry! Our team will be in touch within 24 hours.')">Send Inquiry →</button>
+            <button class="btn-primary" onclick="alert('Thank you! Our team will be in touch within 24 hours.')">Send Inquiry &rarr;</button>
         </div>
     </div>
 </section>
@@ -764,30 +774,73 @@
     <div class="footer-logo">Netanel <span>Hospitality</span></div>
     <div class="footer-text">
         Premium Tickets for Sports, Concerts & Theater<br>
-        <a href="/cdn-cgi/l/email-protection#30595e565f705e5544515e555c585f43405944515c5944491e535f5d"><span class="__cf_email__" data-cfemail="9ff6f1f9f0dff1faebfef1faf3f7f0eceff6ebfef3f6ebe6b1fcf0f2">[email&#160;protected]</span></a>
+        <a href="mailto:info@netanelhospitality.com">info@netanelhospitality.com</a>
     </div>
-    <div class="footer-divider"></div>
-    <div class="footer-bottom">© 2025 Netanel Hospitality. All rights reserved.</div>
+    <div class="footer-bottom">&copy; 2025 Netanel Hospitality. All rights reserved.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
     // Mobile menu
     function closeMobile() {
         document.getElementById('mobileMenu').classList.remove('active');
         document.body.style.overflow = '';
     }
 
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            e.preventDefault();
-            document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                entry.target.style.transitionDelay = (i * 0.08) + 's';
+                entry.target.classList.add('visible');
+            }
         });
-    });
+    }, { threshold: 0.15 });
 
-    // Scroll animation for elements
-    const observer = new IntersectionObserver(entries => {
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Count-up animation
+    const countObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.t
+                const el = entry.target;
+                const target = parseInt(el.dataset.target);
+                const suffix = el.dataset.suffix || '';
+                const format = el.dataset.format;
+                const duration = 1800;
+                const start = performance.now();
+
+                function update(now) {
+                    const progress = Math.min((now - start) / duration, 1);
+                    const ease = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.floor(ease * target);
+
+                    if (format === 'abbr') {
+                        if (current >= 1000000) el.textContent = (current / 1000000).toFixed(current >= 1000000 && progress < 1 ? 1 : 0) + 'M';
+                        else if (current >= 1000) el.textContent = Math.floor(current / 1000) + 'K';
+                        else el.textContent = current;
+                    } else {
+                        el.textContent = current.toLocaleString() + suffix;
+                    }
+
+                    if (progress < 1) requestAnimationFrame(update);
+                    else {
+                        // Final value
+                        if (format === 'abbr') {
+                            if (target >= 1000000) el.textContent = '1M';
+                            else if (target >= 1000) el.textContent = (target / 1000) + 'K';
+                        } else {
+                            el.textContent = target.toLocaleString() + suffix;
+                        }
+                    }
+                }
+                requestAnimationFrame(update);
+                countObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+</script>
+
+</body>
+</html>

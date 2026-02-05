@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netanel Hospitality | Premium Ticket Brokerage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0B1D33;
+            --navy-light: #132B4A;
+            --gold: #C9A96E;
+            --gold-light: #DBBF8C;
+            --cream: #FAF7F2;
+            --cream-dark: #EDE8DF;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(11, 29, 51, 0.97);
+            backdrop-filter: blur(12px);
+            padding: 0 48px;
+            height: 72px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px; font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+        .logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 36px; align-items: center; }
+        .nav-links a {
+            color: rgba(255,255,255,0.75); text-decoration: none;
+            font-size: 14px; font-weight: 500; letter-spacing: 0.3px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-contact {
+            background: var(--gold); color: var(--navy) !important;
+            padding: 10px 24px; border-radius: 6px;
+            font-weight: 600 !important;
+        }
+        .nav-contact:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            background: var(--navy);
+            position: relative; overflow: hidden;
+            padding: 120px 48px 80px;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 80% 40%, rgba(201,169,110,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 20% 70%, rgba(201,169,110,0.05) 0%, transparent 60%);
+        }
+        .hero-grid {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .hero-content { position: relative; max-width: 720px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(201,169,110,0.12); border: 1px solid rgba(201,169,110,0.25);
+            border-radius: 100px; padding: 8px 20px;
+            font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+            color: var(--gold); text-transform: uppercase;
+            margin-bottom: 32px;
+            animation: fadeUp 0.8s ease both;
+        }
+        .hero-badge::before {
+            content: ''; width: 6px; height: 6px;
+            background: var(--gold); border-radius: 50%;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 5.5vw, 72px);
+            font-weight: 600; color: var(--white);
+            line-height: 1.1; margin-bottom: 28px;
+            animation: fadeUp 0.8s ease 0.15s both;
+        }
+        .hero h1 em {
+            font-style: italic; color: var(--gold);
+        }
+        .hero p {
+            font-size: 18px; line-height: 1.7;
+            color: rgba(255,255,255,0.6);
+            max-width: 540px; margin-bottom: 44px;
+            animation: fadeUp 0.8s ease 0.3s both;
+        }
+        .hero-actions {
+            display: flex; gap: 16px; flex-wrap: wrap;
+            animation: fadeUp 0.8s ease 0.45s both;
+        }
+        .btn-primary {
+            background: var(--gold); color: var(--navy);
+            padding: 16px 36px; border-radius: 8px;
+            font-size: 15px; font-weight: 600;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+            transition: all 0.3s; border: none; cursor: pointer;
+        }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+        .btn-secondary {
+            background: transparent; color: var(--white);
+            padding: 16px 36px; border-radius: 8px;
+            font-size: 15px; font-weight: 500;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+        .hero-stats {
+            position: absolute; right: 48px; bottom: 80px;
+            display: flex; gap: 48px;
+            animation: fadeUp 0.8s ease 0.6s both;
+        }
+        .stat { text-align: center; }
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 44px; font-weight: 600; color: var(--gold);
+        }
+        .stat-label {
+            font-size: 12px; color: rgba(255,255,255,0.45);
+            text-transform: uppercase; letter-spacing: 1.5px;
+            margin-top: 4px;
+        }
+
+        /* SECTIONS */
+        section { padding: 100px 48px; }
+        .section-label {
+            font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 3.5vw, 48px);
+            font-weight: 600; color: var(--navy);
+            line-height: 1.15; margin-bottom: 20px;
+        }
+        .section-subtitle {
+            font-size: 17px; line-height: 1.7;
+            color: var(--text-light); max-width: 560px;
+        }
+
+        /* SERVICES */
+        .services { background: var(--white); }
+        .services-header { text-align: center; margin-bottom: 64px; }
+        .services-header .section-subtitle { margin: 0 auto; }
+        .services-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px; max-width: 1100px; margin: 0 auto;
+        }
+        .service-card {
+            background: var(--cream);
+            border-radius: 16px; padding: 40px 36px;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.4s;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+        }
+        .service-icon {
+            width: 56px; height: 56px;
+            background: var(--navy); border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 24px; font-size: 24px;
+        }
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px; font-weight: 600;
+            color: var(--navy); margin-bottom: 12px;
+        }
+        .service-card p {
+            font-size: 15px; line-height: 1.7;
+            color: var(--text-light);
+        }
+
+        /* ABOUT */
+        .about {
+            background: var(--navy);
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 80px; align-items: center;
+        }
+        .about .section-title { color: var(--white); }
+        .about .section-subtitle { color: rgba(255,255,255,0.55); max-width: 100%; }
+        .about-features { margin-top: 40px; display: flex; flex-direction: column; gap: 24px; }
+        .about-feature {
+            display: flex; gap: 16px; align-items: flex-start;
+        }
+        .about-feature-icon {
+            width: 40px; height: 40px; flex-shrink: 0;
+            background: rgba(201,169,110,0.12);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold); font-size: 18px;
+        }
+        .about-feature h4 {
+            font-size: 15px; font-weight: 600;
+            color: var(--white); margin-bottom: 4px;
+        }
+        .about-feature p {
+            font-size: 14px; line-height: 1.6;
+            color: rgba(255,255,255,0.45);
+        }
+        .about-visual {
+            background: var(--navy-light);
+            border-radius: 20px; padding: 48px;
+            border: 1px solid rgba(255,255,255,0.06);
+            display: flex; flex-direction: column; gap: 28px;
+        }
+        .about-stat-row {
+            display: flex; justify-content: space-between;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .about-stat-row:last-child { border: none; padding: 0; }
+        .about-stat-label {
+            font-size: 13px; color: rgba(255,255,255,0.4);
+            letter-spacing: 0.5px;
+        }
+        .about-stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px; font-weight: 600; color: var(--gold);
+        }
+
+        /* TESTIMONIALS */
+        .testimonials { background: var(--cream); }
+        .testimonials-header { text-align: center; margin-bottom: 56px; }
+        .testimonials-header .section-subtitle { margin: 0 auto; }
+        .testimonials-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px; max-width: 1100px; margin: 0 auto;
+        }
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 16px; padding: 36px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .testimonial-stars {
+            color: var(--gold); font-size: 16px;
+            margin-bottom: 20px; letter-spacing: 2px;
+        }
+        .testimonial-text {
+            font-size: 15px; line-height: 1.75;
+            color: var(--text); margin-bottom: 24px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex; align-items: center; gap: 14px;
+        }
+        .testimonial-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--navy); display: flex;
+            align-items: center; justify-content: center;
+            color: var(--gold); font-family: 'Playfair Display', serif;
+            font-size: 16px; font-weight: 600;
+        }
+        .testimonial-name {
+            font-size: 14px; font-weight: 600; color: var(--navy);
+        }
+        .testimonial-role {
+            font-size: 12px; color: var(--text-light);
+        }
+
+        /* CONTACT */
+        .contact { background: var(--white); }
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 64px; max-width: 1100px; margin: 0 auto;
+        }
+        .contact-info { display: flex; flex-direction: column; gap: 36px; }
+        .contact-item { display: flex; gap: 16px; }
+        .contact-item-icon {
+            width: 48px; height: 48px; flex-shrink: 0;
+            background: var(--cream); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .contact-item h4 {
+            font-size: 14px; font-weight: 600;
+            color: var(--navy); margin-bottom: 4px;
+        }
+        .contact-item p {
+            font-size: 14px; color: var(--text-light);
+            line-height: 1.5;
+        }
+        .contact-form {
+            display: flex; flex-direction: column; gap: 16px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 16px 20px; border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.08);
+            background: var(--cream); font-family: 'DM Sans', sans-serif;
+            font-size: 14px; outline: none;
+            transition: border-color 0.3s;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--gold);
+        }
+        .contact-form textarea { resize: vertical; min-height: 120px; }
+        .contact-form button {
+            align-self: flex-start;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--navy); padding: 48px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px; font-weight: 600; color: var(--white);
+            margin-bottom: 16px;
+        }
+        .footer-logo span { color: var(--gold); }
+        .footer-text {
+            font-size: 13px; color: rgba(255,255,255,0.35);
+            line-height: 1.7;
+        }
+        .footer-text a { color: var(--gold); text-decoration: none; }
+        .footer-divider {
+            width: 60px; height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 24px auto;
+        }
+        .footer-bottom {
+            font-size: 12px; color: rgba(255,255,255,0.25);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            nav { padding: 0 24px; }
+            .nav-links { display: none; }
+            section { padding: 64px 24px; }
+            .hero { padding: 100px 24px 64px; }
+            .hero-stats { position: static; margin-top: 48px; }
+            .about { grid-template-columns: 1fr; gap: 40px; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Mobile hamburger */
+        .mobile-menu-btn {
+            display: none; background: none; border: none;
+            color: white; font-size: 24px; cursor: pointer;
+        }
+        @media (max-width: 900px) {
+            .mobile-menu-btn { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">Netanel <span>Hospitality</span></div>
+    <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Clients</a>
+        <a href="#contact" class="nav-contact">Get in Touch</a>
+    </div>
+    <button class="mobile-menu-btn">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+        <div class="hero-badge">Trusted Ticket Broker</div>
+        <h1>Premium Tickets for<br><em>Unforgettable Events</em></h1>
+        <p>Netanel Hospitality is a professional ticket brokerage specializing in premium seats for sports, concerts, and theater. We connect fans with the live experiences they love.</p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Request a Quote →</a>
+            <a href="#services" class="btn-secondary">Our Services</a>
+        </div>
+    </div>
+    <div class="hero-stats">
+        <div class="stat">
+            <div class="stat-num">5K+</div>
+            <div class="stat-label">Tickets Sold</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">98%</div>
+            <div class="stat-label">Client Satisfaction</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">12+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <div class="services-header">
+        <div class="section-label">What We Do</div>
+        <div class="section-title">Our Services</div>
+        <div class="section-subtitle">From courtside seats to front-row shows, we source premium tickets for the events that matter most to you.</div>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">🏟️</div>
+            <h3>Sports</h3>
+            <p>Premium seats for NFL, NBA, MLB, NHL, soccer, boxing, and major sporting events. From regular season to championship finals.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🎵</div>
+            <h3>Concerts</h3>
+            <p>Front-row access to the biggest tours and festivals. Whether it's pop, rock, hip-hop, or country — we get you in the building.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🎭</div>
+            <h3>Theater</h3>
+            <p>Broadway, West End, and touring productions. Premium orchestra and mezzanine seats for the hottest shows in town.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div>
+        <div class="section-label">About Us</div>
+        <div class="section-title">A Trusted Name in<br>Ticket Brokerage</div>
+        <div class="section-subtitle">Founded with a passion for live events, Netanel Hospitality has grown into a trusted ticket brokerage connecting fans with premium seats for sports, concerts, and theater. Our team works directly with venues and partners to secure the best availability at competitive prices.</div>
+        <div class="about-features">
+            <div class="about-feature">
+                <div class="about-feature-icon">✓</div>
+                <div>
+                    <h4>Verified & Guaranteed Tickets</h4>
+                    <p>Every ticket we sell is 100% authentic and guaranteed for entry.</p>
+                </div>
+            </div>
+            <div class="about-feature">
+                <div class="about-feature-icon">✓</div>
+                <div>
+                    <h4>Best Seat Selection</h4>
+                    <p>Access to premium inventory across thousands of venues nationwide.</p>
+                </div>
+            </div>
+            <div class="about-feature">
+                <div class="about-feature-icon">✓</div>
+                <div>
+                    <h4>Personal Service</h4>
+                    <p>A real person handles your order — no bots, no runarounds.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-visual">
+        <div class="about-stat-row">
+            <div>
+                <div class="about-stat-label">Founded</div>
+                <div class="about-stat-value">2012</div>
+            </div>
+            <div>
+                <div class="about-stat-label">Team Members</div>
+                <div class="about-stat-value">25+</div>
+            </div>
+        </div>
+        <div class="about-stat-row">
+            <div>
+                <div class="about-stat-label">Events Covered</div>
+                <div class="about-stat-value">1,000+ / Year</div>
+            </div>
+            <div>
+                <div class="about-stat-label">Venues</div>
+                <div class="about-stat-value">500+</div>
+            </div>
+        </div>
+        <div class="about-stat-row">
+            <div>
+                <div class="about-stat-label">Happy Customers</div>
+                <div class="about-stat-value">10,000+</div>
+            </div>
+            <div>
+                <div class="about-stat-label">Satisfaction Rate</div>
+                <div class="about-stat-value">98%</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+    <div class="testimonials-header">
+        <div class="section-label">Client Testimonials</div>
+        <div class="section-title">What Our Clients Say</div>
+        <div class="section-subtitle">We're proud to have built lasting relationships with clients who trust us for their ticketing and hospitality needs.</div>
+    </div>
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">"Got us incredible floor seats for a sold-out concert within hours. Netanel is our go-to for any event — they always come through."</div>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar">DM</div>
+                <div>
+                    <div class="testimonial-name">David M.</div>
+                    <div class="testimonial-role">Loyal Customer</div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">"I've used Netanel for Broadway tickets multiple times. The seats are always better than expected, and the process couldn't be easier."</div>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar">SR</div>
+                <div>
+                    <div class="testimonial-name">Sarah R.</div>
+                    <div class="testimonial-role">Repeat Customer</div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">"Needed playoff tickets last minute and Netanel made it happen. Great prices, legit tickets, smooth delivery. Can't ask for more."</div>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar">JK</div>
+                <div>
+                    <div class="testimonial-name">James K.</div>
+                    <div class="testimonial-role">Sports Fan</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="contact-grid">
+        <div>
+            <div class="section-label">Contact Us</div>
+            <div class="section-title">Let's Work Together</div>
+            <div class="section-subtitle" style="margin-bottom: 40px;">Looking for tickets to an upcoming event? Reach out and our team will find the best seats for you.</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-item-icon">📧</div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>info@netanelhospitality.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📞</div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <div>
+                        <h4>Office</h4>
+                        <p>New York, NY<br>United States</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">🕐</div>
+                    <div>
+                        <h4>Business Hours</h4>
+                        <p>Mon – Fri: 9:00 AM – 6:00 PM EST<br>Sat: 10:00 AM – 2:00 PM EST</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-form">
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email Address">
+            <input type="text" placeholder="Company (optional)">
+            <input type="text" placeholder="Event You're Interested In">
+            <textarea placeholder="Tell us about your needs..."></textarea>
+            <button class="btn-primary" onclick="alert('Thank you for your inquiry! Our team will be in touch within 24 hours.')">Send Inquiry →</button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">Netanel <span>Hospitality</span></div>
+    <div class="footer-text">
+        Premium Tickets for Sports, Concerts & Theater<br>
+        <a href="mailto:info@netanelhospitality.com">info@netanelhospitality.com</a>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">© 2025 Netanel Hospitality. All rights reserved.</div>
+</footer>
+
+<script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Scroll animation for elements
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.service-card, .testimonial-card, .about-feature, .contact-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s ease';
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
